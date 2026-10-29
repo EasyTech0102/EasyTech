@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about EasyTech, a project that helps senior citizens use smartphones for health, safety and everyday life.">
+    <title>About Us — EasyTech</title>
+    <script src="auth.js"></script>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
+        <div class="container">
+            <span class="a11y-label">Make this page easier to read:</span>
+            <button type="button" id="textDecrease" class="a11y-btn" aria-label="Decrease text size">A−</button>
+            <button type="button" id="textIncrease" class="a11y-btn" aria-label="Increase text size">A+</button>
+            <button type="button" id="contrastToggle" class="a11y-btn" aria-pressed="false">High contrast</button>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <a href="Main.html" class="brand">
+                <img class="brand-mark" src="assets/brand-icon.png" alt="">
+                <span class="brand-name">EasyTech<small>Digital help for senior citizens</small></span>
+            </a>
+            <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navbar">
+                ☰ Menu
+            </button>
+            <ul id="navbar">
+                <li><a href="Main.html">Home</a></li>
+                <li><a class="active" href="about.html">About</a></li>
+                <li><a href="Numbers.html">Emergency Numbers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="about-section">
+            <div class="container">
+                <div class="about-container">
+                    <div class="about-image">
+                        <img src="assets/about-logo.jpg" alt="EasyTech logo: an illustration of an elderly couple using a tablet together, surrounded by icons for connectivity, devices and security">
+                    </div>
+
+                    <div class="about-text">
+                        <h1>About Us</h1>
+                        <p>
+                            The increasing digitalization of healthcare and daily services presents both opportunities and
+                            challenges for senior citizens. Many older adults want to use smartphones for health and
+                            safety but find everyday apps confusing, text too small, or instructions written for people
+                            who already know the basics. This website project aims to bridge that digital divide by
+                            providing simple, accessible, and senior-friendly guidance on adopting technology — particularly
+                            smartphones — for health-related activities. It focuses on key areas such as how to operate a
+                            smartphone, how to connect to the internet (Wi-Fi and mobile data), and how to access basic
+                            healthcare services online (e.g., booking appointments, using telemedicine, and setting
+                            medicine reminders).
+                        </p>
+                        <p>
+                            EasyTech was created to close that gap. It combines
+                            easy-to-understand tutorials, large fonts and adjustable text size, and a high-contrast mode,
+                            so reading and navigating the site never gets in the way of learning. The goal
+                            is simple: help senior citizens independently and confidently use their smartphones to
+                            improve their health, safety, and quality of life in a digital age.
+                        </p>
+
+                        <div class="about-goals">
+                            <div class="goal">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                <div><strong>Simple, guided tutorials</strong>Learn one small step at a time, with plain language and no jargon.</div>
+                            </div>
+                            <div class="goal">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                <div><strong>Large text &amp; high contrast</strong>Adjust the page to what's comfortable for your eyes, on every page.</div>
+                            </div>
+                            <div class="goal">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+                                <div><strong>Safety first</strong>One-tap access to emergency and helpline numbers when it matters most.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img class="brand-mark" src="assets/brand-icon.png" alt="">
+                        <span>EasyTech</span>
+                    </div>
+                    <p><strong>Address:</strong> S.E. Society's SNBP College of Arts, Commerce, Science &amp; Management Studies, Morwadi – Pimpri, Pune 411018, Maharashtra</p>
+                    <p><strong>Hours:</strong> Support available 24/7</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="Main.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="Numbers.html">Emergency Numbers</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div>
+                    <h4>About This Project</h4>
+                    <p>A student project designed to help senior citizens use smartphones safely and confidently for health, safety and everyday tasks.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EasyTech — built for senior citizens, with care.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

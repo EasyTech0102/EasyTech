@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome — EasyTech</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script src="auth.js" data-page="login"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="auth-wrap">
+        <div class="auth-card">
+            <img class="brand-mark" src="assets/brand-icon.png" alt="" style="margin:0 auto 12px">
+            <h1>Welcome to EasyTech</h1>
+            <p class="auth-sub">Please log in or create an account to continue.</p>
+
+            <div class="auth-tabs" role="tablist">
+                <button type="button" role="tab" id="tabLogin" aria-selected="true">Log in</button>
+                <button type="button" role="tab" id="tabCreate" aria-selected="false">Create account</button>
+            </div>
+
+            <form id="authForm" novalidate>
+                <label for="username" id="fieldLabel">Your username</label>
+                <input id="username" name="username" type="text" autocomplete="off" maxlength="30" placeholder="e.g. Ramesh Patil" required>
+                <p class="auth-msg" id="msg" role="alert" aria-live="assertive"></p>
+                <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%">Log in</button>
+                <button type="button" class="btn btn-outline" id="switchBtn" style="width:100%;margin-top:10px;display:none">Create a new account</button>
+            </form>
+            <p class="auth-hint">No password needed — just your name.</p>
+        </div>
+    </main>
+    <script>
+    (function () {
+        var mode = 'login';
+        var $ = function (id) { return document.getElementById(id); };
+        function setMode(m) {
+            mode = m;
+            $('tabLogin').setAttribute('aria-selected', m === 'login');
+            $('tabCreate').setAttribute('aria-selected', m === 'create');
+            $('submitBtn').textContent = m === 'login' ? 'Log in' : 'Create account';
+            $('fieldLabel').textContent = m === 'login' ? 'Your username' : 'Choose a username';
+            $('msg').textContent = ''; $('switchBtn').style.display = 'none';
+            $('username').focus();
+        }
+        $('tabLogin').onclick = function () { setMode('login'); };
+        $('tabCreate').onclick = function () { setMode('create'); };
+        $('switchBtn').onclick = function () { setMode('create'); };
+        $('authForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var btn = $('submitBtn'), label = btn.textContent;
+            btn.disabled = true; btn.textContent = 'Please wait…'; $('msg').textContent = '';
+            var p = mode === 'login' ? EasyAuth.login($('username').value) : EasyAuth.createAccount($('username').value);
+            p.then(function (r) {
+                if (r.ok) { location.replace('Main.html'); return; }
+                btn.disabled = false; btn.textContent = label;
+                $('msg').textContent = r.message;
+                $('switchBtn').style.display = (mode === 'login' && (r.reason === 'unknown' || r.reason === 'in-use')) ? 'block' : 'none';
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

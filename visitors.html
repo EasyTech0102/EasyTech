@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EasyTech helps senior citizens use smartphones confidently — find nearby hospitals, yoga and meditation classes, emergency numbers, and simple video guides.">
+    <title>Visitors — EasyTech</title>
+    <script src="auth.js"></script>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
+        <div class="container">
+            <span class="a11y-label">Make this page easier to read:</span>
+            <button type="button" id="textDecrease" class="a11y-btn" aria-label="Decrease text size">A−</button>
+            <button type="button" id="textIncrease" class="a11y-btn" aria-label="Increase text size">A+</button>
+            <button type="button" id="contrastToggle" class="a11y-btn" aria-pressed="false">High contrast</button>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <a href="Main.html" class="brand">
+                <img class="brand-mark" src="assets/brand-icon.png" alt="">
+                <span class="brand-name">EasyTech<small>Digital help for senior citizens</small></span>
+            </a>
+            <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navbar">
+                ☰ Menu
+            </button>
+            <ul id="navbar">
+                <li><a href="Main.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="Numbers.html">Emergency Numbers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="main">
+<section class="section"><div class="container">
+  <div class="section-head"><h2>Visitors &amp; Accounts</h2><p>Who has created an account and logged in, with date and time.</p></div>
+  <div class="stat-row">
+    <div class="stat"><strong id="sAccounts">0</strong><span>Accounts created</span></div>
+    <div class="stat"><strong id="sVisitors">0</strong><span>People who visited</span></div>
+    <div class="stat"><strong id="sVisits">0</strong><span>Total logins</span></div>
+    <div class="stat"><strong id="sDenied">0</strong><span>Denied attempts</span></div>
+  </div>
+  <p style="margin-bottom:14px"><button type="button" class="btn btn-primary" id="dlv">Download visitors CSV</button> <button type="button" class="btn btn-outline" id="rf">Refresh</button></p>
+  <p id="syncNote" style="margin-bottom:14px"></p>
+  <h3 class="tbl-title">Accounts</h3>
+  <div class="tbl-wrap"><table><thead><tr><th>Username</th><th>Account created</th><th>Last login</th><th>Logins</th></tr></thead><tbody id="tUsers"></tbody></table></div>
+  <h3 class="tbl-title">Activity log (newest first)</h3>
+  <div class="tbl-wrap"><table><thead><tr><th>Username</th><th>Event</th><th>Date &amp; time</th></tr></thead><tbody id="tLog"></tbody></table></div>
+</div></section>
+<script>
+(function(){
+  var labels = {account_created:'Account created', login:'Logged in', denied:'Denied (name already in use)'};
+  function cell(tr, t){ var td=document.createElement('td'); td.textContent=t; tr.appendChild(td); }
+  function empty(body, n, text){ var tr=document.createElement('tr'), td=document.createElement('td'); td.colSpan=n; td.textContent=text; tr.appendChild(td); body.appendChild(tr); }
+  function render(){
+    Promise.all([EasyAuth.users(), EasyAuth.log()]).then(function(r){
+      var users = r[0].slice().sort(function(a,b){ return a.created < b.created ? -1 : 1; }), log = r[1].slice().reverse();
+      var logins = log.filter(function(e){return e.type==='login';});
+      document.getElementById('sAccounts').textContent = users.length;
+      document.getElementById('sVisitors').textContent = new Set(logins.map(function(e){return e.user.toLowerCase();})).size;
+      document.getElementById('sVisits').textContent = logins.length;
+      document.getElementById('sDenied').textContent = log.filter(function(e){return e.type==='denied';}).length;
+      var tu = document.getElementById('tUsers'), tl = document.getElementById('tLog');
+      tu.textContent = ''; tl.textContent = '';
+      if(!users.length) empty(tu,4,'Nothing recorded yet.');
+      users.forEach(function(u){ var tr=document.createElement('tr'); cell(tr,u.name); cell(tr,EasyAuth.fmt(u.created)); cell(tr,EasyAuth.fmt(u.lastLogin)); cell(tr,u.logins); tu.appendChild(tr); });
+      if(!log.length) empty(tl,3,'Nothing recorded yet.');
+      log.forEach(function(e){ var tr=document.createElement('tr'); cell(tr,e.user); cell(tr,labels[e.type]||e.type); cell(tr,EasyAuth.fmt(e.time)); tl.appendChild(tr); });
+      document.getElementById('syncNote').textContent = (EasyAuth.shared ? 'Showing activity from all devices. ' : 'Shared database is not set up yet, so this shows only this browser. ') + 'Updated ' + new Date().toLocaleTimeString() + '.';
+    }).catch(function(){ document.getElementById('syncNote').textContent = 'Could not load data from the server. Check your internet connection and press Refresh.'; });
+  }
+  render();
+  setInterval(render, 20000);
+  document.getElementById('rf').addEventListener('click', render);
+  document.getElementById('dlv').addEventListener('click', function(){ EasyAuth.downloadVisitorsCsv(); });
+})();
+</script>
+</main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img class="brand-mark" src="assets/brand-icon.png" alt="">
+                        <span>EasyTech</span>
+                    </div>
+                    <p><strong>Address:</strong> S.E. Society's SNBP College of Arts, Commerce, Science &amp; Management Studies, Morwadi – Pimpri, Pune 411018, Maharashtra</p>
+                    <p><strong>Hours:</strong> Support available 24/7</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="Main.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="Numbers.html">Emergency Numbers</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div>
+                    <h4>About This Project</h4>
+                    <p>A student project designed to help senior citizens use smartphones safely and confidently for health, safety and everyday tasks.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EasyTech — built for senior citizens, with care.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

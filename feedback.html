@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EasyTech helps senior citizens use smartphones confidently — find nearby hospitals, yoga and meditation classes, emergency numbers, and simple video guides.">
+    <title>Customer Feedback — EasyTech</title>
+    <script src="auth.js"></script>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
+        <div class="container">
+            <span class="a11y-label">Make this page easier to read:</span>
+            <button type="button" id="textDecrease" class="a11y-btn" aria-label="Decrease text size">A−</button>
+            <button type="button" id="textIncrease" class="a11y-btn" aria-label="Increase text size">A+</button>
+            <button type="button" id="contrastToggle" class="a11y-btn" aria-pressed="false">High contrast</button>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <a href="Main.html" class="brand">
+                <img class="brand-mark" src="assets/brand-icon.png" alt="">
+                <span class="brand-name">EasyTech<small>Digital help for senior citizens</small></span>
+            </a>
+            <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navbar">
+                ☰ Menu
+            </button>
+            <ul id="navbar">
+                <li><a href="Main.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="Numbers.html">Emergency Numbers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="main">
+<section class="section"><div class="container">
+  <div class="section-head"><h2>Customer Feedback</h2><p>Messages sent from the Contact page, with the customer's login ID and date/time.</p></div>
+  <div class="stat-row"><div class="stat"><strong id="sCount">0</strong><span>Feedback received</span></div></div>
+  <p style="margin-bottom:14px"><button type="button" class="btn btn-primary" id="dl">Download feedback CSV</button></p>
+  <div class="tbl-wrap"><table><thead><tr><th>#</th><th>Login ID</th><th>Name</th><th>E-mail</th><th>Subject</th><th>Message</th><th>Date &amp; time</th></tr></thead><tbody id="tFb"></tbody></table></div>
+</div></section>
+<script>
+(function(){
+  var body = document.getElementById('tFb');
+  function render(){
+    EasyAuth.feedback().then(function(all){
+      var list = all.slice().reverse();
+      document.getElementById('sCount').textContent = list.length;
+      body.textContent = '';
+      if (!list.length) { var tr=document.createElement('tr'), td=document.createElement('td'); td.colSpan=7; td.textContent='No feedback yet.'; tr.appendChild(td); body.appendChild(tr); }
+      list.forEach(function(f){
+        var tr = document.createElement('tr');
+        [f.id, f.loginId, f.name, f.email, f.subject, f.message, EasyAuth.fmt(f.time)].forEach(function(t){ var td=document.createElement('td'); td.textContent=t; tr.appendChild(td); });
+        body.appendChild(tr);
+      });
+    }).catch(function(){ body.textContent=''; var tr=document.createElement('tr'), td=document.createElement('td'); td.colSpan=7; td.textContent='Could not load feedback. Check your internet connection and refresh.'; tr.appendChild(td); body.appendChild(tr); });
+  }
+  render();
+  setInterval(render, 20000);
+  document.getElementById('dl').addEventListener('click', function(){ EasyAuth.downloadFeedbackCsv(); });
+})();
+</script>
+</main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img class="brand-mark" src="assets/brand-icon.png" alt="">
+                        <span>EasyTech</span>
+                    </div>
+                    <p><strong>Address:</strong> S.E. Society's SNBP College of Arts, Commerce, Science &amp; Management Studies, Morwadi – Pimpri, Pune 411018, Maharashtra</p>
+                    <p><strong>Hours:</strong> Support available 24/7</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="Main.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="Numbers.html">Emergency Numbers</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div>
+                    <h4>About This Project</h4>
+                    <p>A student project designed to help senior citizens use smartphones safely and confidently for health, safety and everyday tasks.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EasyTech — built for senior citizens, with care.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EasyTech helps senior citizens use smartphones confidently — find nearby hospitals, yoga and meditation classes, emergency numbers, and simple video guides.">
+    <title>EasyTech — Simple Smartphone Help for Senior Citizens</title>
+    <script src="auth.js"></script>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
+        <div class="container">
+            <span class="a11y-label">Make this page easier to read:</span>
+            <button type="button" id="textDecrease" class="a11y-btn" aria-label="Decrease text size">A−</button>
+            <button type="button" id="textIncrease" class="a11y-btn" aria-label="Increase text size">A+</button>
+            <button type="button" id="contrastToggle" class="a11y-btn" aria-pressed="false">High contrast</button>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <a href="Main.html" class="brand">
+                <img class="brand-mark" src="assets/brand-icon.png" alt="">
+                <span class="brand-name">EasyTech<small>Digital help for senior citizens</small></span>
+            </a>
+            <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navbar">
+                ☰ Menu
+            </button>
+            <ul id="navbar">
+                <li><a class="active" href="Main.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="Numbers.html">Emergency Numbers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-copy">
+                    <span class="hero-eyebrow">Welcome</span>
+                    <h1>Your smartphone, made simple.</h1>
+                    <p class="lead">Big buttons, clear steps, no confusing jargon. Find nearby help, learn your phone one step at a time, and reach emergency numbers in a single tap.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#easy-access">Find help near me</a>
+                        <a class="btn btn-outline" href="Numbers.html">Emergency numbers</a>
+                    </div>
+                </div>
+                <div class="hero-panel">
+                    <h3>What you can do here</h3>
+                    <ul>
+                        <li><span class="dot" aria-hidden="true"></span>Find hospitals, yoga and meditation classes near you</li>
+                        <li><span class="dot" aria-hidden="true"></span>Watch short, simple videos on using your phone</li>
+                        <li><span class="dot" aria-hidden="true"></span>Call emergency and helpline numbers with one tap</li>
+                        <li><span class="dot" aria-hidden="true"></span>Adjust text size and contrast any time, from any page</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="easy-access" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Easy Access</h2>
+                    <p>A few things people look for most often.</p>
+                </div>
+                <div class="card-grid">
+                    <a class="card-link" href="https://www.google.com/maps/search/hospital+near+me" target="_blank" rel="noopener">
+                        <div class="card-media"><img src="assets/hospital.png" alt="Illustration of a hospital building"></div>
+                        <div class="card-body">
+                            <span class="card-tag">Nearby</span>
+                            <h3>Hospitals Nearby</h3>
+                            <p>Opens Google Maps to hospitals close to you.</p>
+                        </div>
+                    </a>
+
+                    <a class="card-link" href="https://www.google.com/maps/search/yoga+class+near+me" target="_blank" rel="noopener">
+                        <div class="card-media"><img src="assets/yoga.png" alt="Illustration of a person doing yoga"></div>
+                        <div class="card-body">
+                            <span class="card-tag">Nearby</span>
+                            <h3>Yoga Classes Nearby</h3>
+                            <p>Opens Google Maps to yoga classes close to you.</p>
+                        </div>
+                    </a>
+
+                    <a class="card-link" href="https://www.google.com/maps/search/meditation+near+me" target="_blank" rel="noopener">
+                        <div class="card-media"><img src="assets/meditation.jpg" alt="Illustration of a person meditating"></div>
+                        <div class="card-body">
+                            <span class="card-tag">Nearby</span>
+                            <h3>Meditation Classes Nearby</h3>
+                            <p>Opens Google Maps to meditation classes close to you.</p>
+                        </div>
+                    </a>
+
+                    <a class="card-link card-emergency" href="Numbers.html">
+                        <div class="card-media"><img src="assets/emergency-call.png" alt="Emergency call icon"></div>
+                        <div class="card-body">
+                            <span class="card-tag">Urgent</span>
+                            <h3>Emergency Contacts</h3>
+                            <p>Police, ambulance, fire and helpline numbers you can tap to call.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-head">
+                    <h2>How To</h2>
+                    <p>Short video guides — tap a card to watch on YouTube.</p>
+                </div>
+                <div class="card-grid">
+                    <a class="card-link" href="https://www.youtube.com/watch?v=Ch6sJV2TR1w" target="_blank" rel="noopener">
+                        <div class="card-media"><img src="assets/internet.jpg" alt="Illustration of connecting to the internet"></div>
+                        <div class="card-body">
+                            <span class="card-tag">Video guide</span>
+                            <h3>How to Connect to the Internet</h3>
+                            <p>Step-by-step help for Wi-Fi and mobile data.</p>
+                        </div>
+                    </a>
+
+                    <a class="card-link" href="https://www.youtube.com/watch?v=QkvlYq9TazU" target="_blank" rel="noopener">
+                        <div class="card-media"><img src="assets/calling-video.png" alt="Illustration of a phone call"></div>
+                        <div class="card-body">
+                            <span class="card-tag">Video guide</span>
+                            <h3>Calling &amp; Video Calling</h3>
+                            <p>Make voice and video calls to family and friends.</p>
+                        </div>
+                    </a>
+
+                    <a class="card-link" href="https://www.youtube.com/watch?v=y3EdIiJeTXk" target="_blank" rel="noopener">
+                        <div class="card-media"><img src="assets/messages-logo.png" alt="Illustration of a messaging app"></div>
+                        <div class="card-body">
+                            <span class="card-tag">Video guide</span>
+                            <h3>Messaging</h3>
+                            <p>Send and read text messages with confidence.</p>
+                        </div>
+                    </a>
+
+                    <a class="card-link" href="https://www.youtube.com/watch?v=eckHENT-16E" target="_blank" rel="noopener">
+                        <div class="card-media"><img src="assets/online-payment.jpg" alt="Illustration of online payment"></div>
+                        <div class="card-body">
+                            <span class="card-tag">Video guide</span>
+                            <h3>Online Payments &amp; Shopping</h3>
+                            <p>Learn to pay bills and shop safely online.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img class="brand-mark" src="assets/brand-icon.png" alt="">
+                        <span>EasyTech</span>
+                    </div>
+                    <p><strong>Address:</strong> S.E. Society's SNBP College of Arts, Commerce, Science &amp; Management Studies, Morwadi – Pimpri, Pune 411018, Maharashtra</p>
+                    <p><strong>Hours:</strong> Support available 24/7</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="Main.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="Numbers.html">Emergency Numbers</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div>
+                    <h4>About This Project</h4>
+                    <p>A student project designed to help senior citizens use smartphones safely and confidently for health, safety and everyday tasks.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EasyTech — built for senior citizens, with care.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
